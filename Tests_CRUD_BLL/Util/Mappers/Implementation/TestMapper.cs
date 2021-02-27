@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tests_CRUD_BLL.Util.Mappers.Interfaces;
 using Tests_CRUD_DAL.Repositories.Interfaces;
 
-namespace Tests_CRUD_BLL.Util.Mappers
+namespace Tests_CRUD_BLL.Util.Mappers.Implementation
 {
-    public class TestMapper
+    public class TestMapper : ITestMapper
     {
         public ITestRepository TestRepository { get; set; }
         public IAnswerRepository AnswerRepository { get; set; }

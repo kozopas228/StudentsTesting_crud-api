@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Tests_CRUD_DAL.Entities.Util;
 
 namespace Tests_CRUD_DAL.Entities
 {
-    public class Question
+    public class Question : BaseEntity
     {
-        public Guid Id { get; set; }
         public string Text { get; set; }
         public IEnumerable<Answer> Answers { get; set; }
         public Guid TestId { get; set; }

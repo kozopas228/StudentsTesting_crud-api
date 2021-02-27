@@ -1,15 +1,23 @@
 ﻿using System.Threading.Tasks;
+using Tests_CRUD_BLL.Util.Mappers.Interfaces;
+using Tests_CRUD_DAL.Entities;
 using Tests_CRUD_DAL.Repositories.Interfaces;
 
-namespace Tests_CRUD_BLL.Util.Mappers
+namespace Tests_CRUD_BLL.Util.Mappers.Implementation
 {
-    public class AnswerMapper
+    public class AnswerMapper : IAnswerMapper
     {
+        public ITestRepository TestRepository { get; set; }
         public IAnswerRepository AnswerRepository { get; set; }
+        public IQuestionRepository QuestionRepository { get; set; }
+        public ITestThemeRepository TestThemeRepository { get; set; }
 
-        public AnswerMapper(IAnswerRepository answerRepository)
+        public AnswerMapper(ITestRepository testRepository, IQuestionRepository questionRepository, IAnswerRepository answerRepository, ITestThemeRepository testThemeRepository)
         {
+            this.TestRepository = testRepository;
+            this.QuestionRepository = questionRepository;
             this.AnswerRepository = answerRepository;
+            this.TestThemeRepository = testThemeRepository;
         }
 
         public Models.Answer ToDto(Tests_CRUD_DAL.Entities.Answer answer)
@@ -25,7 +33,7 @@ namespace Tests_CRUD_BLL.Util.Mappers
             return result;
         }
 
-        public Task<Tests_CRUD_DAL.Entities.Answer> ToEntity(Models.Answer answer)
+        public Task<Tests_CRUD_DAL.Entities.Answer> ToEntityAsync(Models.Answer answer)
         {
             var result = new Tests_CRUD_DAL.Entities.Answer
             {

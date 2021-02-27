@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Tests_CRUD_BLL.Models;
 using Tests_CRUD_BLL.Services.Interfaces;
+using Tests_CRUD_BLL.Util.Mappers.Interfaces;
 using Tests_CRUD_DAL.Repositories.Interfaces;
 
 namespace Tests_CRUD_BLL.Services.Implementation
@@ -10,29 +10,43 @@ namespace Tests_CRUD_BLL.Services.Implementation
     public class TestThemeService : ITestThemeService
     {
         public ITestThemeRepository Repository { get; set; }
-
-        public TestThemeService(ITestThemeRepository repository)
+        public ITestThemeMapper Mapper { get; set; }
+        public TestThemeService(ITestThemeRepository repository, ITestThemeMapper mapper)
         {
             this.Repository = repository;
+            this.Mapper = mapper;
         }
-        public async Task<IEnumerable<TestTheme>> GetAllAsync()
+        public async Task<IEnumerable<Models.TestTheme>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var testThemes = new List<Models.TestTheme>();
+
+            var entities = await this.Repository.GetAllAsync();
+
+            foreach (var testTheme in entities)
+            {
+                testThemes.Add(this.Mapper.ToDto(testTheme));
+            }
+
+            return testThemes;
         }
 
         public async Task<bool> DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await this.Repository.DeleteAsync(id);
         }
 
-        public async Task<bool> UpdateAsync(TestTheme obj)
+        public async Task<bool> UpdateAsync(Models.TestTheme obj)
         {
-            throw new NotImplementedException();
+            var testTheme = await this.Mapper.ToEntityAsync(obj);
+
+            return await this.Repository.UpdateAsync(testTheme);
         }
 
-        public async Task CreateAsync(TestTheme obj)
+        public async Task CreateAsync(Models.TestTheme obj)
         {
-            throw new NotImplementedException();
+            var testTheme = await this.Mapper.ToEntityAsync(obj);
+
+            await this.Repository.CreateAsync(testTheme);
         }
     }
 }

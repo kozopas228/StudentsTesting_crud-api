@@ -1,20 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Tests_CRUD_DAL.Entities;
+using Tests_CRUD_BLL.Util.Mappers.Interfaces;
 using Tests_CRUD_DAL.Repositories.Interfaces;
 
-namespace Tests_CRUD_BLL.Util.Mappers
+namespace Tests_CRUD_BLL.Util.Mappers.Implementation
 {
-    public class QuestionMapper
+    public class QuestionMapper : IQuestionMapper
     {
         public IQuestionRepository QuestionRepository { get; set; }
+        public ITestThemeRepository TestThemeRepository { get; set; }
+        public ITestRepository TestRepository { get; set; }
         public IAnswerRepository AnswerRepository { get; set; }
 
-        public QuestionMapper(IQuestionRepository questionRepository, IAnswerRepository answerRepository)
+        public QuestionMapper(ITestRepository testRepository, IQuestionRepository questionRepository, IAnswerRepository answerRepository, ITestThemeRepository testThemeRepository)
         {
+            this.TestRepository = testRepository;
             this.QuestionRepository = questionRepository;
             this.AnswerRepository = answerRepository;
+            this.TestThemeRepository = testThemeRepository;
         }
 
         public Models.Question ToDto(Tests_CRUD_DAL.Entities.Question question)
@@ -66,7 +70,7 @@ namespace Tests_CRUD_BLL.Util.Mappers
                 }
                 else
                 {
-                    listOfAnswers.Add(new Answer
+                    listOfAnswers.Add(new Tests_CRUD_DAL.Entities.Answer
                     {
                         Id = answer.Id,
                         IsCorrect = answer.IsCorrect,

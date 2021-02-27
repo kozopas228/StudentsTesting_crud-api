@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Tests_CRUD_BLL.Models;
 using Tests_CRUD_BLL.Services.Interfaces;
+using Tests_CRUD_BLL.Util.Mappers.Interfaces;
 using Tests_CRUD_DAL.Repositories.Interfaces;
 
 namespace Tests_CRUD_BLL.Services.Implementation
@@ -10,29 +10,43 @@ namespace Tests_CRUD_BLL.Services.Implementation
     public class TestService : ITestService
     {
         public ITestRepository Repository { get; set; }
-
-        public TestService(ITestRepository repository)
+        public ITestMapper Mapper { get; set; }
+        public TestService(ITestRepository repository, ITestMapper mapper)
         {
             this.Repository = repository;
+            this.Mapper = mapper;
         }
-        public async Task<IEnumerable<Test>> GetAllAsync()
+        public async Task<IEnumerable<Models.Test>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var tests = new List<Models.Test>();
+
+            var entities = await this.Repository.GetAllAsync();
+
+            foreach (var test in entities)
+            {
+                tests.Add(this.Mapper.ToDto(test));
+            }
+
+            return tests;
         }
 
         public async Task<bool> DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await this.Repository.DeleteAsync(id);
         }
 
-        public async Task<bool> UpdateAsync(Test obj)
+        public async Task<bool> UpdateAsync(Models.Test obj)
         {
-            throw new NotImplementedException();
+            var test = await this.Mapper.ToEntityAsync(obj);
+
+            return await this.Repository.UpdateAsync(test);
         }
 
-        public async Task CreateAsync(Test obj)
+        public async Task CreateAsync(Models.Test obj)
         {
-            throw new NotImplementedException();
+            var test = await this.Mapper.ToEntityAsync(obj);
+
+            await this.Repository.CreateAsync(test);
         }
     }
 }
