@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tests_CRUD_BLL.Util.Mappers.Interfaces;
@@ -31,34 +32,13 @@ namespace Tests_CRUD_BLL.Util.Mappers.Implementation
                 TestThemeId = test.TestThemeId,
             };
 
-            var listOfQuestions = new List<Models.Question>();
-
-            foreach (var question in test.Questions)
+            if (test.Questions == null)
             {
-                var listOfAnswers = new List<Models.Answer>();
-
-                listOfQuestions.Add(new Models.Question
-                {
-                    Id = question.Id,
-                    TestId = question.TestId,
-                    Text = question.Text,
-                    Answers = listOfAnswers
-                });
-
-                foreach (var answer in question.Answers)
-                {
-                    listOfAnswers.Add(new Models.Answer
-                    {
-                        Id = answer.Id,
-                        IsCorrect = answer.IsCorrect,
-                        QuestionId = answer.QuestionId,
-                        Text = answer.Text
-                    });
-                }
-
+                return result;
             }
 
-            result.Questions = listOfQuestions;
+
+            result.QuestionsIds = test.Questions.Select(x=>x.TestId).ToList();
 
             return result;
         }
@@ -74,52 +54,28 @@ namespace Tests_CRUD_BLL.Util.Mappers.Implementation
 
             };
 
-            var testThemes = await TestThemeRepository.GetAllAsync();
-
-            var theme = testThemes.First(x => x.Id == test.TestThemeId);
-
-            result.TestTheme = theme;
-
-            var listOfQuestions = new List<Tests_CRUD_DAL.Entities.Question>();
-
-            var allQuestions = await this.QuestionRepository.GetAllAsync();
-
-            foreach (var question in test.Questions)
+            if (result.TestThemeId == Guid.Empty)
             {
-                if (allQuestions.Any(x=>x.Id == question.Id))
+                result.TestThemeId = null;
+            }
+
+            var questions = await this.QuestionRepository.GetAllAsync();
+
+            var resultQuestions = new List<Tests_CRUD_DAL.Entities.Question>();
+
+            foreach (var questionId in test.QuestionsIds)
+            {
+                foreach (var question in questions)
                 {
-                    listOfQuestions.Add(allQuestions.First(x=>x.Id==question.Id));
-                }
-                else
-                {
-                    var listOfAnswers = new List<Tests_CRUD_DAL.Entities.Answer>();
-
-                    var quest = new Tests_CRUD_DAL.Entities.Question()
+                    if (questionId == question.Id)
                     {
-                        Id = question.Id,
-                        Test = result,
-                        TestId = test.Id,
-                        Text = question.Text,
-                        Answers = listOfAnswers
-                    };
-
-                    listOfQuestions.Add(quest);
-
-                    foreach (var answer in question.Answers)
-                    {
-                        listOfAnswers.Add(new Tests_CRUD_DAL.Entities.Answer
-                        {
-                            Id = answer.Id,
-                            IsCorrect = answer.IsCorrect,
-                            Question = quest,
-                            QuestionId = answer.QuestionId,
-                            Text = answer.Text
-                        });
+                        resultQuestions.Add(question);
+                        break;
                     }
                 }
             }
 
-            result.Questions = listOfQuestions;
+            result.Questions = resultQuestions.ToList();
 
             return result;
         }

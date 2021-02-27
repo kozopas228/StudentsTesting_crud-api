@@ -51,6 +51,8 @@ namespace Tests_CRUD_DAL.Repositories.Implementation
 
             answer.Question = await _context.Questions.FindAsync(obj.QuestionId);
 
+            _context.Answers.Update(answer);
+
             await _context.SaveChangesAsync();
 
             return true;

@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Tests_CRUD_BLL.Util.Mappers.Interfaces;
-using Tests_CRUD_DAL.Entities;
 using Tests_CRUD_DAL.Repositories.Interfaces;
 
 namespace Tests_CRUD_BLL.Util.Mappers.Implementation
@@ -42,6 +42,11 @@ namespace Tests_CRUD_BLL.Util.Mappers.Implementation
                 QuestionId = answer.QuestionId,
                 Text = answer.Text
             };
+
+            if (result.QuestionId == Guid.Empty)
+            {
+                result.QuestionId = null;
+            }
 
             return Task.FromResult(result);
         }

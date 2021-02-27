@@ -20,7 +20,7 @@ namespace Tests_CRUD_DAL.Repositories.Implementation
 
         public async Task<IEnumerable<TestTheme>> GetAllAsync()
         {
-             return await _context.TestThemes.ToListAsync();
+             return await _context.TestThemes.Include(x=>x.Tests).ToListAsync();
         }
 
         public async Task<bool> DeleteAsync(Guid id)
@@ -51,6 +51,8 @@ namespace Tests_CRUD_DAL.Repositories.Implementation
             var tests = await _context.Tests.Where(x => x.TestThemeId == obj.Id).ToListAsync();
 
             theme.Tests = tests;
+
+            _context.TestThemes.Update(theme);
 
             await _context.SaveChangesAsync();
 

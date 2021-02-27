@@ -38,7 +38,7 @@ namespace Tests_CRUD_BLL.Util.Mappers.Implementation
 
             var allTests = await this.TestRepository.GetAllAsync();
 
-            var matchTests = allTests.Where(x => x.TestThemeId == theme.Id);
+            var matchTests = allTests.Where(x => x.TestThemeId == theme.Id).ToList();
 
             result.Tests = matchTests;
 

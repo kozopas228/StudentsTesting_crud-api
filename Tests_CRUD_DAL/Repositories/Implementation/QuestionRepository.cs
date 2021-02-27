@@ -19,7 +19,7 @@ namespace Tests_CRUD_DAL.Repositories.Implementation
 
         public async Task<IEnumerable<Question>> GetAllAsync()
         {
-            return await _context.Questions.ToListAsync();
+            return await _context.Questions.Include(x => x.Answers).ToListAsync();
         }
 
         public async Task<bool> DeleteAsync(Guid id)
@@ -48,8 +48,10 @@ namespace Tests_CRUD_DAL.Repositories.Implementation
             question.TestId = obj.TestId;
             question.Text = obj.Text;
 
-            question.Answers = _context.Answers.Where(x => x.QuestionId == obj.Id);
+            question.Answers = obj.Answers;
             question.Test = await _context.Tests.FindAsync(obj.TestId);
+
+            _context.Questions.Update(question);
 
             await _context.SaveChangesAsync();
 

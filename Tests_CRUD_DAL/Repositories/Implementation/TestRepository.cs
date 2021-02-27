@@ -19,7 +19,7 @@ namespace Tests_CRUD_DAL.Repositories.Implementation
 
         public async Task<IEnumerable<Test>> GetAllAsync()
         {
-            return await _context.Tests.ToListAsync();
+            return await _context.Tests.Include(x=>x.Questions).ToListAsync();
         }
 
         public async Task<bool> DeleteAsync(Guid id)
@@ -50,7 +50,9 @@ namespace Tests_CRUD_DAL.Repositories.Implementation
             test.Name = obj.Name;
 
             test.TestTheme = await _context.TestThemes.FindAsync(obj.TestThemeId);
-            test.Questions = _context.Questions.Where(x => x.TestId == obj.Id);
+            test.Questions = obj.Questions;
+
+            _context.Tests.Update(test);
 
             await _context.SaveChangesAsync();
 

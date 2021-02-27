@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tests_CRUD_BLL.Util.Mappers.Interfaces;
@@ -30,23 +31,14 @@ namespace Tests_CRUD_BLL.Util.Mappers.Implementation
                 Text = question.Text,
             };
 
-            var listOfAnswers = new List<Models.Answer>();
-
-            foreach (var answer in question.Answers)
+            if (question.Answers == null)
             {
-                listOfAnswers.Add(new Models.Answer
-                {
-                    QuestionId = answer.QuestionId,
-                    Id = answer.Id,
-                    IsCorrect = answer.IsCorrect,
-                    Text = answer.Text
-                });
+                return result;
             }
 
-            result.Answers = listOfAnswers;
+            result.AnswersIds = question.Answers.Select(x=>(Guid?)x.Id).ToList();
 
             return result;
-
         }
 
         public async Task<Tests_CRUD_DAL.Entities.Question> ToEntityAsync(Models.Question question)
@@ -58,30 +50,28 @@ namespace Tests_CRUD_BLL.Util.Mappers.Implementation
                 Text = question.Text
             };
 
-            var listOfAnswers = new List<Tests_CRUD_DAL.Entities.Answer>();
-
-            var allAnswers = await this.AnswerRepository.GetAllAsync();
-
-            foreach (var answer in question.Answers)
+            if (result.TestId == Guid.Empty)
             {
-                if (allAnswers.Any(x => x.Id == answer.Id))
+                result.TestId = null;
+            }
+
+            var allAnswers = await AnswerRepository.GetAllAsync();
+
+            var answerList = new List<Tests_CRUD_DAL.Entities.Answer>();
+
+            foreach (var answer in allAnswers)
+            {
+                foreach (var answ in question.AnswersIds)
                 {
-                    listOfAnswers.Add(allAnswers.First(x=>x.Id == answer.Id));
-                }
-                else
-                {
-                    listOfAnswers.Add(new Tests_CRUD_DAL.Entities.Answer
+                    if (answ == answer.Id)
                     {
-                        Id = answer.Id,
-                        IsCorrect = answer.IsCorrect,
-                        QuestionId = answer.QuestionId,
-                        Text = answer.Text,
-                        Question = result
-                    });
+                        answerList.Add(answer);
+                        break;
+                    }
                 }
             }
 
-            result.Answers = listOfAnswers;
+            result.Answers = answerList;
 
             return result;
         }

@@ -8,8 +8,8 @@ namespace Tests_CRUD_DAL.Entities
     public class Question : BaseEntity
     {
         public string Text { get; set; }
-        public IEnumerable<Answer> Answers { get; set; }
-        public Guid TestId { get; set; }
+        public ICollection<Answer> Answers { get; set; }
+        public Guid? TestId { get; set; }
         public Test Test { get; set; }
     }
 }
