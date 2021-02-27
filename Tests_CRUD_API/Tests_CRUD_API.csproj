@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tests_CRUD_BLL\Tests_CRUD_BLL.csproj" />
+    <ProjectReference Include="..\Tests_CRUD_DAL\Tests_CRUD_DAL.csproj" />
+  </ItemGroup>
+
+
+</Project>
