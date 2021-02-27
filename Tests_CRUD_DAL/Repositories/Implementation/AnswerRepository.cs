@@ -59,6 +59,7 @@ namespace Tests_CRUD_DAL.Repositories.Implementation
         public async Task CreateAsync(Answer obj)
         {
             await _context.Answers.AddAsync(obj);
+
             await _context.SaveChangesAsync();
         }
     }

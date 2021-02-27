@@ -9,6 +9,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tests_CRUD_BLL.Services.Implementation;
+using Tests_CRUD_BLL.Services.Interfaces;
+using Tests_CRUD_BLL.Util.Mappers.Implementation;
+using Tests_CRUD_BLL.Util.Mappers.Interfaces;
+using Tests_CRUD_DAL.Repositories.Implementation;
+using Tests_CRUD_DAL.Repositories.Interfaces;
 
 namespace Tests_CRUD_API
 {
@@ -21,19 +27,38 @@ namespace Tests_CRUD_API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwaggerGen();
             services.AddControllers();
+
+            services.AddTransient<IAnswerRepository, AnswerRepository>();
+            services.AddTransient<IQuestionRepository, QuestionRepository>();
+            services.AddTransient<ITestRepository, TestRepository>();
+            services.AddTransient<ITestThemeRepository, TestThemeRepository>();
+            services.AddTransient<IAnswerMapper, AnswerMapper>();
+            services.AddTransient<IQuestionMapper, QuestionMapper>();
+            services.AddTransient<ITestMapper, TestMapper>();
+            services.AddTransient<ITestThemeMapper, TestThemeMapper>();
+            services.AddTransient<IAnswerService, AnswerService>();
+            services.AddTransient<IQuestionService, QuestionService>();
+            services.AddTransient<ITestService, TestService>();
+            services.AddTransient<ITestThemeService, TestThemeService>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseRouting();
 
