@@ -12,9 +12,9 @@ namespace Tests_CRUD_DAL.Repositories.Implementation
     {
         private ApplicationContext _context;
 
-        public AnswerRepository()
+        public AnswerRepository(ApplicationContext context)
         {
-            _context ??= new ApplicationContext();
+            _context = context;
         }
 
         public async Task<IEnumerable<Answer>> GetAllAsync()
