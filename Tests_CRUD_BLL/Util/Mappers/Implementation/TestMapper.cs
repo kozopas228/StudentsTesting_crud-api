@@ -63,14 +63,17 @@ namespace Tests_CRUD_BLL.Util.Mappers.Implementation
 
             var resultQuestions = new List<Tests_CRUD_DAL.Entities.Question>();
 
-            foreach (var questionId in test.QuestionsIds)
+            if (test.QuestionsIds != null)
             {
-                foreach (var question in questions)
+                foreach (var questionId in test.QuestionsIds)
                 {
-                    if (questionId == question.Id)
+                    foreach (var question in questions)
                     {
-                        resultQuestions.Add(question);
-                        break;
+                        if (questionId == question.Id)
+                        {
+                            resultQuestions.Add(question);
+                            break;
+                        }
                     }
                 }
             }

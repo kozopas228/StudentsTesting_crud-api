@@ -59,14 +59,17 @@ namespace Tests_CRUD_BLL.Util.Mappers.Implementation
 
             var answerList = new List<Tests_CRUD_DAL.Entities.Answer>();
 
-            foreach (var answer in allAnswers)
+            if (question.AnswersIds != null)
             {
-                foreach (var answ in question.AnswersIds)
+                foreach (var answer in allAnswers)
                 {
-                    if (answ == answer.Id)
+                    foreach (var answ in question.AnswersIds)
                     {
-                        answerList.Add(answer);
-                        break;
+                        if (answ == answer.Id)
+                        {
+                            answerList.Add(answer);
+                            break;
+                        }
                     }
                 }
             }
