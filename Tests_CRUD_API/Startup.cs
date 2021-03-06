@@ -34,6 +34,14 @@ namespace Tests_CRUD_API
         {
             services.AddSwaggerGen();
             services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder => 
+                        builder.AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader());
+            });
             AddDb(services);
             ConfigureDependencies(services);
         }
@@ -75,6 +83,8 @@ namespace Tests_CRUD_API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors();
 
             app.UseSwagger();
 
