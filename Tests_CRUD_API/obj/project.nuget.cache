@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ZGq/TAwIHTbv7t+u03RqCtF1//OBTiUn9tuxJejXRijj9gEu64q3iCzes1rkKG58tmZHJDLduqgqb3aPeXTcrA==",
+  "dgSpecHash": "L5PRqHBNyxlKG8O15BvI6QURcV6W4GRhH1glkdnQWo4wmLznCDbalkuhug/afylAoTSHmdOda2sYUvhoNV8BHQ==",
   "success": true,
   "projectFilePath": "D:\\Students Testing App\\Tests_CRUD_API\\Tests_CRUD_API\\Tests_CRUD_API.csproj",
   "expectedPackageFiles": [
@@ -37,6 +37,7 @@
     "C:\\Users\\CSharpSila\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\CSharpSila\\.nuget\\packages\\microsoft.netcore.targets\\1.1.3\\microsoft.netcore.targets.1.1.3.nupkg.sha512",
     "C:\\Users\\CSharpSila\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\CSharpSila\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.9\\microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\CSharpSila\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\CSharpSila\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
