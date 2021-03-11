@@ -26,8 +26,8 @@ namespace Tests_CRUD_API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAnswer([FromBody]Tests_CRUD_BLL.Models.Answer answer)
         {
-            await this.Service.CreateAsync(answer);
-            return Ok();
+            var result = await this.Service.CreateAsync(answer);
+            return Ok(result);
         }
 
         [HttpPut]

@@ -42,11 +42,13 @@ namespace Tests_CRUD_BLL.Services.Implementation
             return await this.Repository.UpdateAsync(answer);
         }
 
-        public async Task CreateAsync(Models.Answer obj)
+        public async Task<Guid> CreateAsync(Models.Answer obj)
         {
             var answer = await this.Mapper.ToEntityAsync(obj);
 
-            await this.Repository.CreateAsync(answer);
+            var result = await this.Repository.CreateAsync(answer);
+
+            return result;
         }
 
     }

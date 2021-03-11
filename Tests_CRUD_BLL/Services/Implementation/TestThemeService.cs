@@ -42,11 +42,11 @@ namespace Tests_CRUD_BLL.Services.Implementation
             return await this.Repository.UpdateAsync(testTheme);
         }
 
-        public async Task CreateAsync(Models.TestTheme obj)
+        public async Task<Guid> CreateAsync(Models.TestTheme obj)
         {
             var testTheme = await this.Mapper.ToEntityAsync(obj);
 
-            await this.Repository.CreateAsync(testTheme);
+            return await this.Repository.CreateAsync(testTheme);
         }
     }
 }

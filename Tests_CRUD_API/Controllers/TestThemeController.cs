@@ -27,8 +27,7 @@ namespace Tests_CRUD_API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateTestTheme([FromBody] Tests_CRUD_BLL.Models.TestTheme testTheme)
         {
-            await this.Service.CreateAsync(testTheme);
-            return Ok();
+            return Ok(await this.Service.CreateAsync(testTheme));
         }
 
         [HttpPut]

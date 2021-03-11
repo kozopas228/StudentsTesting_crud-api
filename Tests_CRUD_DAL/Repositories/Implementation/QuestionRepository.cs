@@ -58,10 +58,12 @@ namespace Tests_CRUD_DAL.Repositories.Implementation
             return true;
         }
 
-        public async Task CreateAsync(Question obj)
+        public async Task<Guid> CreateAsync(Question obj)
         {
             await _context.Questions.AddAsync(obj);
             await _context.SaveChangesAsync();
+
+            return obj.Id;
         }
     }
 }

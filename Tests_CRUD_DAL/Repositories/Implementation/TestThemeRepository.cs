@@ -59,10 +59,12 @@ namespace Tests_CRUD_DAL.Repositories.Implementation
             return true;
         }
 
-        public async Task CreateAsync(TestTheme obj)
+        public async Task<Guid> CreateAsync(TestTheme obj)
         {
            await _context.TestThemes.AddAsync(obj);
            await _context.SaveChangesAsync();
+
+           return obj.Id;
         }
     }
 }
