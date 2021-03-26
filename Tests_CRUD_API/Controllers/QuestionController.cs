@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Own_IoC_Container;
 using Tests_CRUD_BLL.Services.Interfaces;
 
 namespace Tests_CRUD_API.Controllers
@@ -13,9 +14,9 @@ namespace Tests_CRUD_API.Controllers
     public class QuestionController : ControllerBase
     {
         public IQuestionService Service { get; set; }
-        public QuestionController(IQuestionService service)
+        public QuestionController(DiContainer container)
         {
-            this.Service = service;
+            this.Service = container.GetService<IQuestionService>();
         }
 
         [HttpGet]

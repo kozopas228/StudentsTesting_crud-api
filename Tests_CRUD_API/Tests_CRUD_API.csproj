@@ -17,5 +17,11 @@
     <ProjectReference Include="..\Tests_CRUD_DAL\Tests_CRUD_DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Own_IoC_Container">
+      <HintPath>C:\Users\CSharpSila\source\repos\Own_IoC_Container\Own_IoC_Container\bin\Debug\netcoreapp3.1\Own_IoC_Container.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 
 </Project>

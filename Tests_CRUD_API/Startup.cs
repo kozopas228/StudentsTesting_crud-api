@@ -10,10 +10,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Own_IoC_Container;
 using Tests_CRUD_BLL.Services.Implementation;
 using Tests_CRUD_BLL.Services.Interfaces;
 using Tests_CRUD_BLL.Util.Mappers.Implementation;
 using Tests_CRUD_BLL.Util.Mappers.Interfaces;
+using Tests_CRUD_DAL;
 using Tests_CRUD_DAL.Repositories.Implementation;
 using Tests_CRUD_DAL.Repositories.Interfaces;
 
@@ -48,18 +50,26 @@ namespace Tests_CRUD_API
 
         public virtual void ConfigureDependencies(IServiceCollection services)
         {
-            services.AddTransient<IAnswerRepository, AnswerRepository>();
-            services.AddTransient<IQuestionRepository, QuestionRepository>();
-            services.AddTransient<ITestRepository, TestRepository>();
-            services.AddTransient<ITestThemeRepository, TestThemeRepository>();
-            services.AddTransient<IAnswerMapper, AnswerMapper>();
-            services.AddTransient<IQuestionMapper, QuestionMapper>();
-            services.AddTransient<ITestMapper, TestMapper>();
-            services.AddTransient<ITestThemeMapper, TestThemeMapper>();
-            services.AddTransient<IAnswerService, AnswerService>();
-            services.AddTransient<IQuestionService, QuestionService>();
-            services.AddTransient<ITestService, TestService>();
-            services.AddTransient<ITestThemeService, TestThemeService>();
+            var servs = new DiServiceCollection();
+
+            servs.RegisterTransient<IAnswerRepository, AnswerRepository>();
+            servs.RegisterTransient<IQuestionRepository, QuestionRepository>();
+            servs.RegisterTransient<ITestRepository, TestRepository>();
+            servs.RegisterTransient<ITestThemeRepository, TestThemeRepository>();
+            servs.RegisterTransient<IAnswerMapper, AnswerMapper>();
+            servs.RegisterTransient<IQuestionMapper, QuestionMapper>();
+            servs.RegisterTransient<ITestMapper, TestMapper>();
+            servs.RegisterTransient<ITestThemeMapper, TestThemeMapper>();
+            servs.RegisterTransient<IAnswerService, AnswerService>();
+            servs.RegisterTransient<IQuestionService, QuestionService>();
+            servs.RegisterTransient<ITestService, TestService>();
+            servs.RegisterTransient<ITestThemeService, TestThemeService>();
+
+            servs.RegisterSingleton(services.BuildServiceProvider().GetService<ApplicationContext>());
+
+            var container = servs.GenerateContainer();
+
+            services.AddSingleton<DiContainer>(container);
         }
 
         private void AddDb(IServiceCollection services)
