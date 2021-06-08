@@ -17,10 +17,5 @@ namespace Tests_CRUD_DAL
         {
             Database.EnsureCreated();
         }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=oaksdoaskpodaskpodk22222;Trusted_Connection=True;");
-        //}
     }
 }
