@@ -56,5 +56,8 @@ namespace Tests_CRUD_API.Controllers
 
             return NotFound();
         }
+        public IActionResult Master(){
+        throw new Exception();
+        }
     }
 }
