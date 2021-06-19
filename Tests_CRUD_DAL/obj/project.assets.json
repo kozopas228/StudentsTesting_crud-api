@@ -5446,23 +5446,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\CSharpSila\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Hapan9\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Students Testing App\\Tests_CRUD_API\\Tests_CRUD_DAL\\Tests_CRUD_DAL.csproj",
+      "projectUniqueName": "C:\\Users\\Hapan9\\Documents\\GitHub\\StudentsTesting_crud-api\\Tests_CRUD_DAL\\Tests_CRUD_DAL.csproj",
       "projectName": "Tests_CRUD_DAL",
-      "projectPath": "D:\\Students Testing App\\Tests_CRUD_API\\Tests_CRUD_DAL\\Tests_CRUD_DAL.csproj",
-      "packagesPath": "C:\\Users\\CSharpSila\\.nuget\\packages\\",
-      "outputPath": "D:\\Students Testing App\\Tests_CRUD_API\\Tests_CRUD_DAL\\obj\\",
+      "projectPath": "C:\\Users\\Hapan9\\Documents\\GitHub\\StudentsTesting_crud-api\\Tests_CRUD_DAL\\Tests_CRUD_DAL.csproj",
+      "packagesPath": "C:\\Users\\Hapan9\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Hapan9\\Documents\\GitHub\\StudentsTesting_crud-api\\Tests_CRUD_DAL\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\CSharpSila\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Hapan9\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5522,7 +5518,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Tests_CRUD_DAL.Entities.Util;
 
 namespace Tests_CRUD_DAL.Entities

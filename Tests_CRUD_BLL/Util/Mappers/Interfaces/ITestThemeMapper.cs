@@ -2,6 +2,6 @@
 {
     public interface ITestThemeMapper : IGenericMapper<Models.TestTheme, Tests_CRUD_DAL.Entities.TestTheme>
     {
-        
+
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tests_CRUD_BLL.Services.Interfaces;
@@ -24,7 +23,7 @@ namespace Tests_CRUD_API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAnswer([FromBody]Tests_CRUD_BLL.Models.Answer answer)
+        public async Task<IActionResult> CreateAnswer([FromBody] Tests_CRUD_BLL.Models.Answer answer)
         {
             var result = await this.Service.CreateAsync(answer);
             return Ok(result);
@@ -50,7 +49,7 @@ namespace Tests_CRUD_API.Controllers
 
             if (allAnswers.Any(x => x.Id == id))
             {
-                return new JsonResult(allAnswers.First(x=>x.Id==id));
+                return new JsonResult(allAnswers.First(x => x.Id == id));
             }
 
             return NotFound();

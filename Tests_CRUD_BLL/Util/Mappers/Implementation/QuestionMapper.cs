@@ -36,7 +36,7 @@ namespace Tests_CRUD_BLL.Util.Mappers.Implementation
                 return result;
             }
 
-            result.AnswersIds = question.Answers.Select(x=>(Guid?)x.Id).ToList();
+            result.AnswersIds = question.Answers.Select(x => (Guid?)x.Id).ToList();
 
             return result;
         }

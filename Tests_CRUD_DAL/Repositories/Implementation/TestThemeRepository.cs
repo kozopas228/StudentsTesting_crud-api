@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Amazon.DynamoDBv2;
-using Microsoft.EntityFrameworkCore;
 using Tests_CRUD_DAL.Entities;
 using Tests_CRUD_DAL.Repositories.Interfaces;
 
@@ -20,7 +19,7 @@ namespace Tests_CRUD_DAL.Repositories.Implementation
 
         public async Task<IEnumerable<TestTheme>> GetAllAsync()
         {
-             return await _context.TestThemes.Include(x=>x.Tests).ToListAsync();
+            return await _context.TestThemes.Include(x => x.Tests).ToListAsync();
         }
 
         public async Task<bool> DeleteAsync(Guid id)
@@ -61,10 +60,10 @@ namespace Tests_CRUD_DAL.Repositories.Implementation
 
         public async Task<Guid> CreateAsync(TestTheme obj)
         {
-           await _context.TestThemes.AddAsync(obj);
-           await _context.SaveChangesAsync();
+            await _context.TestThemes.AddAsync(obj);
+            await _context.SaveChangesAsync();
 
-           return obj.Id;
+            return obj.Id;
         }
     }
 }

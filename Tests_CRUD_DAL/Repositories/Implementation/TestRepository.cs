@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Tests_CRUD_DAL.Entities;
 using Tests_CRUD_DAL.Repositories.Interfaces;
 
@@ -19,7 +18,7 @@ namespace Tests_CRUD_DAL.Repositories.Implementation
 
         public async Task<IEnumerable<Test>> GetAllAsync()
         {
-            return await _context.Tests.Include(x=>x.Questions).ToListAsync();
+            return await _context.Tests.Include(x => x.Questions).ToListAsync();
         }
 
         public async Task<bool> DeleteAsync(Guid id)

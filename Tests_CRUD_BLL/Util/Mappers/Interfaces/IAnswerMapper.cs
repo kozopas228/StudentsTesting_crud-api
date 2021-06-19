@@ -2,6 +2,6 @@
 {
     public interface IAnswerMapper : IGenericMapper<Models.Answer, Tests_CRUD_DAL.Entities.Answer>
     {
-        
+
     }
 }

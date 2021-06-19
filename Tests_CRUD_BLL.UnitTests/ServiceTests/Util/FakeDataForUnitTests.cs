@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using AutoFixture;
+﻿using AutoFixture;
+using System.Collections.Generic;
 
 namespace Tests_CRUD_BLL.UnitTests.ServiceTests.Util
 {

@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using AutoFixture;
+﻿using AutoFixture;
 using Moq;
+using System.Linq;
+using System.Threading.Tasks;
 using Tests_CRUD_BLL.Services.Implementation;
 using Tests_CRUD_BLL.Services.Interfaces;
 using Tests_CRUD_BLL.UnitTests.ServiceTests.Util;

@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using AutoFixture;
+using Moq;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoFixture;
-using Moq;
 using Tests_CRUD_BLL.Services.Implementation;
 using Tests_CRUD_BLL.Services.Interfaces;
 using Tests_CRUD_BLL.UnitTests.ServiceTests.Util;
@@ -41,7 +40,7 @@ namespace Tests_CRUD_BLL.UnitTests.ServiceTests
             await service.GetAllAsync();
 
             //Arrange
-            repositoryMock.Verify(x=>x.GetAllAsync());
+            repositoryMock.Verify(x => x.GetAllAsync());
         }
 
         [Fact]
@@ -65,7 +64,7 @@ namespace Tests_CRUD_BLL.UnitTests.ServiceTests
             await service.DeleteAsync(idToDelete);
 
             //Assert
-            this.repositoryMock.Verify(x=>x.DeleteAsync(idToDelete));
+            this.repositoryMock.Verify(x => x.DeleteAsync(idToDelete));
         }
 
         [Fact]
@@ -109,7 +108,7 @@ namespace Tests_CRUD_BLL.UnitTests.ServiceTests
             await service.UpdateAsync(mappedObject);
 
             //Assert
-            this.mapperMock.Verify(x=>x.ToEntityAsync(mappedObject));
+            this.mapperMock.Verify(x => x.ToEntityAsync(mappedObject));
 
         }
 

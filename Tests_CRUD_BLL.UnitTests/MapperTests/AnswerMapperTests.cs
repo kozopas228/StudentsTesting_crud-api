@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using AutoFixture;
+﻿using AutoFixture;
 using Moq;
+using System;
+using System.Threading.Tasks;
 using Tests_CRUD_BLL.Util.Mappers.Implementation;
 using Tests_CRUD_DAL.Repositories.Interfaces;
 using Xunit;

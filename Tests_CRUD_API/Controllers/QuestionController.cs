@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tests_CRUD_BLL.Services.Interfaces;
@@ -27,7 +25,7 @@ namespace Tests_CRUD_API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateQuestion([FromBody] Tests_CRUD_BLL.Models.Question question)
         {
-            
+
             return Ok(await this.Service.CreateAsync(question));
         }
 

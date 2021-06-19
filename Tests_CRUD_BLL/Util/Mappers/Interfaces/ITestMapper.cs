@@ -2,6 +2,6 @@
 {
     public interface ITestMapper : IGenericMapper<Models.Test, Tests_CRUD_DAL.Entities.Test>
     {
-        
+
     }
 }
