@@ -1,7 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
-using AutoFixture;
+﻿using AutoFixture;
 using Moq;
+using System.Threading.Tasks;
 using Tests_CRUD_BLL.Util.Mappers.Implementation;
 using Tests_CRUD_DAL.Repositories.Interfaces;
 using Xunit;
@@ -34,9 +33,9 @@ namespace Tests_CRUD_BLL.UnitTests.MapperTests
         {
             //Arrange
             var entity = fixture.Build<Tests_CRUD_DAL.Entities.Question>()
-                .Without(x=>x.Answers)
-                .Without(x=>x.Test)
-                .Without(x=>x.TestId)
+                .Without(x => x.Answers)
+                .Without(x => x.Test)
+                .Without(x => x.TestId)
                 .Create();
 
             var dto = new Tests_CRUD_BLL.Models.Question

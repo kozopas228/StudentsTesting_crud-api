@@ -2,8 +2,8 @@
 
 namespace Tests_CRUD_DAL.Repositories.Interfaces
 {
-    public interface IQuestionRepository:IGenericRepository<Question>
+    public interface IQuestionRepository : IGenericRepository<Question>
     {
-        
+
     }
 }

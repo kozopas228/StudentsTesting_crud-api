@@ -1,12 +1,12 @@
-﻿using System;
+﻿using API_Integration_Tests.Util;
+using AutoFixture;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using API_Integration_Tests.Util;
-using AutoFixture;
-using Newtonsoft.Json;
 using Xunit;
 
 namespace API_Integration_Tests
@@ -78,7 +78,7 @@ namespace API_Integration_Tests
             var fixture = new Fixture();
 
             var testTheme = fixture.Build<Tests_CRUD_DAL.Entities.TestTheme>()
-                .Without(x=>x.Tests)
+                .Without(x => x.Tests)
                 .Create();
 
             var testThemeJson = JsonConvert.SerializeObject(testTheme);

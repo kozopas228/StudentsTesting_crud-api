@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using AutoFixture;
+using System.Collections.Generic;
 using System.Linq;
-using AutoFixture;
 using Tests_CRUD_DAL;
 
 namespace Tests_CRUD_BLL.Util

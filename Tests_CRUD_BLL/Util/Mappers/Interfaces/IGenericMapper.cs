@@ -3,7 +3,7 @@ using Tests_CRUD_DAL.Repositories.Interfaces;
 
 namespace Tests_CRUD_BLL.Util.Mappers.Interfaces
 {
-    public interface IGenericMapper<TDto,TEntity>
+    public interface IGenericMapper<TDto, TEntity>
     {
         ITestRepository TestRepository { get; set; }
         IAnswerRepository AnswerRepository { get; set; }

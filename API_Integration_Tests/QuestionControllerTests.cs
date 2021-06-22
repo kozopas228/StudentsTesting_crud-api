@@ -1,12 +1,12 @@
-﻿using System;
+﻿using API_Integration_Tests.Util;
+using AutoFixture;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using API_Integration_Tests.Util;
-using AutoFixture;
-using Newtonsoft.Json;
 using Xunit;
 
 namespace API_Integration_Tests
@@ -76,7 +76,7 @@ namespace API_Integration_Tests
         {
             //Arrange
             var fixture = new Fixture();
-            var question = fixture.Build<Tests_CRUD_DAL.Entities.Question>().Without(x=>x.Answers).Without(x=>x.Test).Without(x=>x.TestId).Create();
+            var question = fixture.Build<Tests_CRUD_DAL.Entities.Question>().Without(x => x.Answers).Without(x => x.Test).Without(x => x.TestId).Create();
             var questionJson = JsonConvert.SerializeObject(question);
             var httpContent = new StringContent(questionJson, System.Text.Encoding.UTF8, "application/json");
 

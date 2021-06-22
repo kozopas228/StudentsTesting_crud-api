@@ -1,18 +1,12 @@
-﻿using System;
+﻿using API_Integration_Tests.Util;
+using AutoFixture;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using API_Integration_Tests.Util;
-using AutoFixture;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Server.Kestrel;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel.DataCollection;
-using Newtonsoft.Json;
-using Tests_CRUD_API;
 using Xunit;
 
 namespace API_Integration_Tests
@@ -45,7 +39,7 @@ namespace API_Integration_Tests
             var fixture = new Fixture();
             var fakeAnswer = fixture
                 .Build<Tests_CRUD_BLL.Models.Answer>()
-                .With(x=>x.Text,"test1")
+                .With(x => x.Text, "test1")
                 .Create();
             var fakeAnswerJson = JsonConvert.SerializeObject(fakeAnswer);
             var httpContent = new StringContent(fakeAnswerJson, System.Text.Encoding.UTF8, "application/json");
@@ -82,7 +76,7 @@ namespace API_Integration_Tests
         {
             //Arrange
             var fixture = new Fixture();
-            var answer = fixture.Build<Tests_CRUD_DAL.Entities.Answer>().Without(x=>x.Question).Without(x=>x.QuestionId).Create();
+            var answer = fixture.Build<Tests_CRUD_DAL.Entities.Answer>().Without(x => x.Question).Without(x => x.QuestionId).Create();
             var answerJson = JsonConvert.SerializeObject(answer);
             var httpContent = new StringContent(answerJson, System.Text.Encoding.UTF8, "application/json");
 
